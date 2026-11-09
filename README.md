@@ -61,3 +61,32 @@ The implementation was developed independently, with an emphasis on understandin
 - C manual pages: `man 3 printf`, `man 3 stdarg`, `man 2 write`
 - 42 ft_printf subject
 - AI was used for theoretical explanations, debugging guidance, and testing suggestions. The implementation was written by the student.
+
+## Testing
+
+A comparison test program is available in `tests/main.c`.
+
+It compares the output and return values of `ft_printf`
+with the standard C `printf` function.
+
+### Build
+
+    make
+
+### Compile the tests
+
+    cc -Wall -Wextra -Werror -I. tests/main.c libftprintf.a -o test_printf
+
+### Run
+
+    ./test_printf
+
+### Clean
+
+    make fclean
+    rm -f test_printf
+
+The tests cover characters, strings, integers, hexadecimal values,
+pointers, percent signs, and multiple conversions.
+
+Some platform-specific behaviors may differ from the system printf.
