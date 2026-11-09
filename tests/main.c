@@ -15,7 +15,6 @@
 #include <stdio.h>
 
 #define TEST(...)                                                       \
-
 	do                                                                  \
 	{                                                                   \
 		int a;                                                          \
