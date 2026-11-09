@@ -6,7 +6,7 @@
 /*   By: zahmamed <zahmamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 22:08:13 by zahmamed          #+#    #+#             */
-/*   Updated: 2026/11/06 12:40:47 by zahmamed         ###   ########.fr       */
+/*   Updated: 2026/11/06 18:32:31 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,14 @@ int	ft_putstr(char *str)
 	{
 		r = ft_putstr("(null)");
 		if (r == -1)
-		{
 			return (-1);
-		}
 		n += r;
 	}
 	while (str && str[i])
 	{
 		r = ft_putchar(str[i]);
 		if (r == -1)
-		{
 			return (-1);
-		}
 		n += r;
 		i++;
 	}

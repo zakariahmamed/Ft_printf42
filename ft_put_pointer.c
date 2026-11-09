@@ -6,7 +6,7 @@
 /*   By: zahmamed <zahmamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 12:33:41 by zahmamed          #+#    #+#             */
-/*   Updated: 2026/11/06 12:40:50 by zahmamed         ###   ########.fr       */
+/*   Updated: 2026/11/09 09:14:42 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	ft_put_pointer(void *p)
 {
-	int rt = 0;
-	int rcp;
+	int	rt;
+	int	rcp;
+
+	rt = 0;
 	if (!p)
 	{
 		rt = ft_putstr("(nil)");
@@ -25,15 +27,10 @@ int	ft_put_pointer(void *p)
 		rcp = ft_putstr("0x");
 		if (rcp == -1)
 			return (-1);
-		else
-		{
-			rt += rcp;
-		}
+		rt += rcp;
 		rcp = ft_put_adp((unsigned long)p);
 		if (rcp == -1)
-		{
 			return (-1);
-		}
 		rt += rcp;
 	}
 	return (rt);

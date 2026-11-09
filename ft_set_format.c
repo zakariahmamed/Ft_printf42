@@ -6,32 +6,53 @@
 /*   By: zahmamed <zahmamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 22:08:55 by zahmamed          #+#    #+#             */
-/*   Updated: 2026/11/06 12:40:47 by zahmamed         ###   ########.fr       */
+/*   Updated: 2026/11/06 18:53:33 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_set_format(char c, va_list ap)
+static int	ft_set_type1(char c, va_list ap, int rtv)
 {
-	int				rtv;
-	char			*p;
-	void			*p;
-	int				a;
-	unsigned int	c;
-	unsigned int	c;
-	unsigned int	c;
+	unsigned int	b;
+
+	if (c == 'u')
+	{
+		b = va_arg(ap, unsigned int);
+		rtv = ft_put_ugd(b);
+	}
+	else if (c == 'x')
+	{
+		b = va_arg(ap, unsigned int);
+		rtv = ft_put_hexa(b, 'l');
+	}
+	else if (c == 'X')
+	{
+		b = va_arg(ap, unsigned int);
+		rtv = ft_put_hexa(b, 'U');
+	}
+	else if (c == '%')
+	{
+		rtv = ft_putchar(c);
+	}
+	return (rtv);
+}
+
+static int	ft_set_type2(char c, va_list ap, int rtv)
+{
+	void	*p;
+	int		a;
+	char	*s;
 
 	if (c == 'c')
 	{
-		int ch = va_arg(ap, int);
-			// a cause des promotions faites par le prologue
-		rtv = ft_putchar(ch);
+		a = va_arg(ap, int);
+		rtv = ft_putchar(a);
 	}
 	else if (c == 's')
 	{
-		p = va_arg(ap, char *);
-		rtv = ft_putstr(p);
+		s = va_arg(ap, char *);
+		rtv = ft_putstr(s);
 	}
 	else if (c == 'p')
 	{
@@ -43,24 +64,21 @@ int	ft_set_format(char c, va_list ap)
 		a = va_arg(ap, int);
 		rtv = ft_putnbr(a);
 	}
-	else if (c == 'u')
+	return (rtv);
+}
+
+int	ft_set_format(char c, va_list ap)
+{
+	int	rtv;
+
+	rtv = 0;
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i')
 	{
-		c = va_arg(ap, unsigned int);
-		rtv = ft_put_ugd(c);
+		rtv = ft_set_type2(c, ap, rtv);
 	}
-	else if (c == 'x')
+	else if (c == 'u' || c == 'x' || c == 'X' || c == '%')
 	{
-		c = va_arg(ap, unsigned int);
-		rtv = ft_put_hexa(c, 'l');
-	}
-	else if (c == 'X')
-	{
-		c = va_arg(ap, unsigned int);
-		rtv = ft_put_hexa(c, 'U');
-	}
-	else if (c == '%')
-	{
-		rtv = ft_putchar(c);
+		rtv = ft_set_type1(c, ap, rtv);
 	}
 	return (rtv);
 }

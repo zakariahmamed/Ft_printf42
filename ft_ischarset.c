@@ -6,7 +6,7 @@
 /*   By: zahmamed <zahmamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 22:06:00 by zahmamed          #+#    #+#             */
-/*   Updated: 2026/11/06 12:40:54 by zahmamed         ###   ########.fr       */
+/*   Updated: 2026/11/09 09:21:45 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int	ft_ischarset(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c)
-		{
 			return (1);
-		}
 		i++;
 	}
 	return (0);

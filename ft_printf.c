@@ -6,28 +6,21 @@
 /*   By: zahmamed <zahmamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 17:52:25 by zahmamed          #+#    #+#             */
-/*   Updated: 2026/11/06 12:52:13 by zahmamed         ###   ########.fr       */
+/*   Updated: 2026/11/06 15:58:00 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+static int	ft_get_cases(const char *format, va_list ap, int rt_value)
 {
 	size_t	i;
-	int		rt_value;
 	int		rcp;
-	char	charset[] = "cspdiuxX%";
-	va_list	ap;
 
 	i = 0;
-	rt_value = 0;
-	if (!format)
-		return (-1);
-	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && ft_ischarset(charset, format[i + 1]))
+		if (format[i] == '%' && ft_ischarset("cspdiuxX%", format[i + 1]))
 		{
 			rcp = ft_set_format(format[i + 1], ap);
 			if (rcp == -1)
@@ -44,6 +37,19 @@ int	ft_printf(const char *format, ...)
 			i++;
 		}
 	}
+	return (rt_value);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	int		rt_value;
+	va_list	ap;
+
+	rt_value = 0;
+	if (!format)
+		return (-1);
+	va_start(ap, format);
+	rt_value = ft_get_cases(format, ap, rt_value);
 	va_end(ap);
 	return (rt_value);
 }

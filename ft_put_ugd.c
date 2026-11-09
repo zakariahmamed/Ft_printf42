@@ -6,7 +6,7 @@
 /*   By: zahmamed <zahmamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 10:39:08 by zahmamed          #+#    #+#             */
-/*   Updated: 2026/11/06 12:40:50 by zahmamed         ###   ########.fr       */
+/*   Updated: 2026/11/09 09:13:55 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 int	ft_put_ugd(unsigned int n)
 {
-	int rtv = 0;
+	int	rtv;
+	int	i;
+	int	j;
+	int	k;
+
+	rtv = 0;
 	if (n <= 9)
 	{
-		char c = n + 48;
-		int i = ft_putchar(c);
+		i = ft_putchar(n + 48);
 		if (i == -1)
-		{
 			return (-1);
-		}
 		rtv += i;
 	}
 	else
 	{
-		int j = ft_put_ugd(n / 10);
-		int k = ft_put_ugd(n % 10);
-		if (j == -1 || k == -1)
-		{
+		j = ft_put_ugd(n / 10);
+		if (j == -1)
 			return (-1);
-		}
+		k = ft_put_ugd(n % 10);
+		if (k == -1)
+			return (-1);
 		rtv += j + k;
 	}
 	return (rtv);
